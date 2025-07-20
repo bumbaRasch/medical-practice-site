@@ -106,21 +106,14 @@ class StructuredLogger
 
             /**
              * Get user context information.
+             * Note: Medical practice website has no authentication system
              *
-             * @return array<string, mixed>|null
+             * @return null
              */
-            private static function getUserContext(): ?array
+            private static function getUserContext(): null
             {
-                if (!Auth::check()) {
-                    return null;
-                }
-
-                $user = Auth::user();
-                
-                return [
-                    'id' => $user->id ?? null,
-                    'type' => 'patient', // Medical practice context
-                ];
+                // No authentication system in medical practice website
+                return null;
             }
 
             /**

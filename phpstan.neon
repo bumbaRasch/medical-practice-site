@@ -1,0 +1,15 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+
+parameters:
+    level: 9
+    paths:
+        - app
+    
+    # Laravel-specific configuration to handle framework false positives
+    treatPhpDocTypesAsCertain: false
+    
+    # Ignore Laravel view system type mismatches (framework-level issues)
+    ignoreErrors:
+        - '#Parameter \#1 \$view of function view expects view-string\|null, string given#'

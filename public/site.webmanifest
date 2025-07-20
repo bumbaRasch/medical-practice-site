@@ -1,0 +1,70 @@
+{
+    "name": "Hausarztpraxis Hamburg - Ihre vertrauensvolle Gesundheitsversorgung",
+    "short_name": "Hausarzt HH",
+    "description": "Moderne Hausarztpraxis in Hamburg - Termine online, umfassende medizinische Versorgung",
+    "icons": [
+        {
+            "src": "/favicon.ico",
+            "sizes": "48x48 32x32 16x16",
+            "type": "image/x-icon",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/favicon.ico",
+            "sizes": "192x192",
+            "type": "image/x-icon"
+        },
+        {
+            "src": "/favicon.ico",
+            "sizes": "512x512",
+            "type": "image/x-icon"
+        }
+    ],
+    "theme_color": "#4A90E2",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "start_url": "/",
+    "scope": "/",
+    "orientation": "portrait-primary",
+    "categories": ["health", "medical", "healthcare"],
+    "lang": "de-DE",
+    "id": "hausarztpraxis-hamburg",
+    "shortcuts": [
+        {
+            "name": "Termin vereinbaren",
+            "short_name": "Kontakt",
+            "description": "Schnell einen Termin vereinbaren",
+            "url": "/kontakt",
+            "icons": [
+                {
+                    "src": "/favicon.ico",
+                    "sizes": "96x96"
+                }
+            ]
+        },
+        {
+            "name": "Leistungen",
+            "short_name": "Services",
+            "description": "Unsere medizinischen Leistungen",
+            "url": "/leistungen",
+            "icons": [
+                {
+                    "src": "/favicon.ico",
+                    "sizes": "96x96"
+                }
+            ]
+        },
+        {
+            "name": "Häufige Fragen",
+            "short_name": "FAQ",
+            "description": "Antworten auf häufige Fragen",
+            "url": "/faq",
+            "icons": [
+                {
+                    "src": "/favicon.ico",
+                    "sizes": "96x96"
+                }
+            ]
+        }
+    ]
+}

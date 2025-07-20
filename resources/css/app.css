@@ -1,0 +1,1150 @@
+@import "tailwindcss";
+
+/* Soothing Medical Practice Theme - Calm, Trustworthy & Welcoming */
+@theme {
+  /* === LIGHT THEME COLORS === */
+  /* Primary soothing colors - ensuring WCAG AA contrast ratios */
+  --color-medical-blue: #3B7BB8; /* Darker for better text contrast while remaining calming */
+  --color-medical-blue-dark: #2F6699; /* Darker variant for high contrast buttons */
+  --color-medical-blue-light: #5B9BD5; /* Light variant for backgrounds */
+  --color-medical-light-blue: #EBF4FD; /* Very soft background blue */
+  --color-medical-gray: #F8FAFB; /* Ultra-light gray with hint of blue */
+  
+  /* === DARK THEME COLORS === */
+  /* Medical Dark Theme - Soothing navy blues and soft grays for comfortable viewing */
+  --color-dark-bg-primary: #0f172a; /* Deep navy background - restful and medical */
+  --color-dark-bg-secondary: #1e293b; /* Secondary dark blue-gray surface */
+  --color-dark-bg-tertiary: #334155; /* Card/component backgrounds */
+  --color-dark-surface: #475569; /* Elevated surfaces */
+  
+  /* Dark theme text colors - Enhanced for better contrast */
+  --color-dark-text-primary: #f8fafc; /* Primary text - brighter soft white */
+  --color-dark-text-secondary: #e2e8f0; /* Secondary text - improved contrast */
+  --color-dark-text-muted: #cbd5e1; /* Muted text - more visible */
+  --color-dark-text-subtle: #94a3b8; /* Subtle text - for very minor elements */
+  
+  /* Dark theme medical colors - Enhanced visibility */
+  --color-dark-medical-blue: #60a5fa; /* Lighter blue for dark backgrounds */
+  --color-dark-medical-blue-light: #93c5fd; /* Even lighter for accents */
+  --color-dark-medical-blue-bright: #dbeafe; /* High contrast blue for important text */
+  --color-dark-accent-teal: #22d3ee; /* Healing teal accent */
+  --color-dark-accent-mint: #6ee7b7; /* Soft mint for health indicators */
+  
+  /* Dark theme borders and dividers */
+  --color-dark-border: #475569; /* Subtle borders */
+  --color-dark-border-light: #64748b; /* Lighter borders */
+  --color-dark-divider: #334155; /* Section dividers */
+  
+  /* Calm, nurturing color palette */
+  --color-soft-blue: #5B9BD5; /* Gentle sky blue - same as light variant */
+  --color-gentle-blue: #F4F8FD; /* Almost white with blue undertone */
+  --color-trust-blue: #2F6699; /* Professional, high contrast */
+  --color-healing-blue: #7BB3E0; /* Light, healing blue */
+  
+  /* Gentle green accents for growth & health */
+  --color-soft-green: #7FB069; /* Muted sage green - natural & calming */
+  --color-gentle-green: #B8D4A8; /* Light sage for accents */
+  --color-healing-mint: #F1F8F0; /* Barely-there mint background */
+  --color-nature-green: #9BC53D; /* Fresh, life-affirming green */
+  
+  /* Warm, comfortable grays */
+  --color-warm-gray-25: #FDFDFE; /* Nearly white with warmth */
+  --color-warm-gray-50: #F9FAFB; /* Softest background */
+  --color-warm-gray-100: #F3F4F6; /* Light section backgrounds */
+  --color-warm-gray-200: #E5E7EB; /* Subtle borders */
+  --color-warm-gray-300: #D1D5DB; /* Form borders */
+  --color-warm-gray-400: #9CA3AF; /* Placeholder text */
+  --color-warm-gray-500: #6B7280; /* Secondary text */
+  --color-warm-gray-600: #4B5563; /* Primary text - readable */
+  --color-warm-gray-700: #374151; /* Headings */
+  --color-warm-gray-800: #1F2937; /* Strong text */
+  --color-warm-gray-900: #111827; /* Darkest text */
+  
+  /* Gentle gradients for visual depth */
+  --color-gradient-primary: linear-gradient(135deg, #5B9BD5 0%, #7BB3E0 100%);
+  --color-gradient-soft: linear-gradient(135deg, #EBF4FD 0%, #F4F8FD 100%);
+  --color-gradient-warm: linear-gradient(135deg, #F4F8FD 0%, #F1F8F0 100%);
+  --color-gradient-healing: linear-gradient(135deg, #F8FAFB 0%, #EBF4FD 100%);
+  
+  /* Typography - friendly and approachable */
+  --font-family-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Gentle shadows for depth without harshness */
+  --shadow-soft: 0 4px 6px -1px rgba(91, 155, 213, 0.04), 0 2px 4px -1px rgba(91, 155, 213, 0.02);
+  --shadow-warm: 0 10px 25px -5px rgba(91, 155, 213, 0.08), 0 4px 10px -2px rgba(91, 155, 213, 0.04);
+  --shadow-gentle: 0 1px 3px 0 rgba(91, 155, 213, 0.03), 0 1px 2px 0 rgba(91, 155, 213, 0.02);
+  --shadow-floating: 0 20px 40px -12px rgba(91, 155, 213, 0.1), 0 8px 16px -4px rgba(91, 155, 213, 0.06);
+  --shadow-card: 0 8px 20px -6px rgba(91, 155, 213, 0.06), 0 3px 8px -2px rgba(91, 155, 213, 0.04);
+  
+  /* Dark theme shadows - deeper and more pronounced */
+  --shadow-dark-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  --shadow-dark-warm: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 4px 10px -2px rgba(0, 0, 0, 0.2);
+  --shadow-dark-gentle: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  --shadow-dark-floating: 0 20px 40px -12px rgba(0, 0, 0, 0.5), 0 8px 16px -4px rgba(0, 0, 0, 0.3);
+  --shadow-dark-card: 0 8px 20px -6px rgba(0, 0, 0, 0.4), 0 3px 8px -2px rgba(0, 0, 0, 0.2);
+  
+  /* Rounded corners for approachable design */
+  --radius-gentle: 16px;
+  --radius-soft: 20px;
+  --radius-warm: 24px;
+  --radius-card: 18px;
+  
+  /* High contrast colors for accessibility */
+  --color-high-contrast-text: #1a1a1a;
+  --color-high-contrast-bg: #ffffff;
+  
+  /* Focus ring colors */
+  --color-focus-ring: #3b7bb8;
+  --color-focus-ring-offset: #ffffff;
+}
+
+/* Enhanced accessibility styles */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-medical-blue: #1a5490;
+    --color-warm-gray-900: #000000;
+    --color-warm-gray-700: #2d2d2d;
+    --color-warm-gray-600: #404040;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-pulse {
+    animation: none !important;
+  }
+}
+
+/* Focus improvements */
+*:focus {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Enhanced focus for form elements */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Button focus depends on background */
+button:focus {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Blue buttons get white focus rings */
+.bg-medical-blue:focus,
+.bg-gradient-to-r:focus,
+button[class*="bg-medical-blue"]:focus,
+button[class*="bg-gradient-to-r"]:focus {
+  outline: 3px solid white;
+  outline-offset: 2px;
+}
+
+/* White/light buttons get blue focus rings */
+.bg-white:focus,
+.bg-gray-50:focus {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Skip links styles */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--color-medical-blue);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 100;
+  transform: translateY(-100%);
+  transition: transform 0.3s;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+  top: 6px;
+}
+
+/* High contrast support for form validation */
+.aria-invalid {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 1px #dc2626 !important;
+}
+
+/* Ensure sufficient color contrast for links */
+a {
+  text-decoration-color: transparent;
+}
+
+a:hover,
+a:focus {
+  text-decoration-color: currentColor;
+}
+
+/* Fix navigation and CTA button underlines */
+nav a,
+.language-switcher a,
+nav .relative a,
+header nav a,
+.mobile-menu a,
+.btn,
+button a,
+a[class*="bg-"],
+a[class*="gradient"] {
+  text-decoration: none !important;
+}
+
+/* Restore hover underlines for navigation links only */
+nav a:hover,
+nav a:focus,
+.mobile-menu a:hover,
+.mobile-menu a:focus {
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+}
+
+/* Ensure CTA buttons never have underlines */
+a[class*="bg-gradient"],
+a[class*="bg-medical"],
+.btn,
+button,
+a[role="button"] {
+  text-decoration: none !important;
+}
+
+a[class*="bg-gradient"]:hover,
+a[class*="bg-gradient"]:focus,
+a[class*="bg-medical"]:hover,
+a[class*="bg-medical"]:focus,
+.btn:hover,
+.btn:focus,
+button:hover,
+button:focus,
+a[role="button"]:hover,
+a[role="button"]:focus {
+  text-decoration: none !important;
+}
+
+/* Smooth, welcoming animations */
+.btn-smooth {
+  transform: translateY(0);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-smooth:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(91, 155, 213, 0.15);
+}
+
+/* Enhanced card animations */
+.card-float {
+  transform: translateY(0);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-float:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(91, 155, 213, 0.12);
+}
+
+/* Gentle pulse animation for decorative elements */
+@keyframes gentle-pulse {
+  0%, 100% { opacity: 0.1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.05); }
+}
+
+.animate-gentle-pulse {
+  animation: gentle-pulse 4s ease-in-out infinite;
+}
+
+/* Button contrast utilities */
+.btn-primary {
+  background-color: var(--color-medical-blue-dark);
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-trust-blue); /* Use our dark blue for hover */
+}
+
+.btn-primary:focus {
+  outline: 3px solid white;
+  outline-offset: 2px;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: var(--color-trust-blue); /* Use darker blue for better contrast */
+  border: 2px solid var(--color-trust-blue);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-trust-blue);
+  color: white;
+}
+
+.btn-secondary:focus {
+  outline: 3px solid var(--color-trust-blue);
+  outline-offset: 2px;
+}
+
+/* High contrast badge for light backgrounds */
+.badge-contrast {
+  background-color: var(--color-trust-blue);
+  color: white;
+  border: 1px solid var(--color-trust-blue);
+}
+
+.badge-light {
+  background-color: white;
+  color: var(--color-trust-blue);
+  border: 2px solid var(--color-trust-blue);
+}
+
+/* Ensure minimum contrast ratios */
+@media (prefers-contrast: high) {
+  :root {
+    --color-medical-blue: #1e40af; /* Even darker for high contrast */
+    --color-medical-blue-dark: #1e3a8a; /* Ultra dark for buttons */
+    --color-trust-blue: #1e3a8a; /* Ultra dark for high contrast */
+  }
+  
+  .btn-primary {
+    background-color: var(--color-medical-blue-dark);
+    border: 2px solid white;
+  }
+  
+  .btn-secondary {
+    background-color: white;
+    color: var(--color-medical-blue);
+    border: 3px solid var(--color-medical-blue);
+  }
+}
+
+/* Force high contrast for problematic combinations */
+.text-medical-blue {
+  color: var(--color-trust-blue) !important;
+}
+
+/* Ensure badges on light backgrounds have sufficient contrast */
+.bg-medical-light-blue .text-medical-blue,
+.bg-gentle-blue .text-medical-blue {
+  color: var(--color-trust-blue) !important;
+  font-weight: 600;
+}
+
+/* Enhanced focus states for better accessibility */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  box-shadow: 0 0 0 3px var(--color-trust-blue), 0 0 0 4px white !important;
+}
+
+/* ================================= */
+/* LOADING STATES & MICRO-INTERACTIONS */
+/* ================================= */
+
+/* Loading spinner component */
+@keyframes medical-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+  animation: medical-spin 1s linear infinite;
+  border: 3px solid transparent;
+  border-top: 3px solid var(--color-medical-blue);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+}
+
+/* Page loading overlay */
+.page-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+}
+
+.page-loading.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.page-loading .spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--color-medical-light-blue);
+  border-top: 4px solid var(--color-medical-blue);
+  border-radius: 50%;
+  animation: medical-spin 1s linear infinite;
+}
+
+/* Skeleton loading for content */
+@keyframes skeleton-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+.skeleton-text {
+  height: 1em;
+  margin: 0.5em 0;
+}
+
+.skeleton-title {
+  height: 2em;
+  width: 60%;
+  margin: 1em 0;
+}
+
+.skeleton-paragraph {
+  height: 1em;
+  margin: 0.25em 0;
+}
+
+.skeleton-paragraph:nth-child(odd) {
+  width: 95%;
+}
+
+.skeleton-paragraph:nth-child(even) {
+  width: 85%;
+}
+
+/* Enhanced button interactions */
+.btn-enhanced {
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.btn-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+  z-index: 1;
+}
+
+.btn-enhanced:hover::before {
+  left: 100%;
+}
+
+/* Card hover micro-interactions */
+.card-hover-enhanced {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) rotateX(0);
+  transform-style: preserve-3d;
+}
+
+.card-hover-enhanced:hover {
+  transform: translateY(-8px) rotateX(1deg);
+  box-shadow: 0 25px 50px rgba(91, 155, 213, 0.15);
+}
+
+/* Ripple effect for buttons */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(0);
+  animation: ripple-animation 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Smooth page transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Progress indicators */
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+.progress-ring-fill {
+  stroke-dasharray: 251.2;
+  stroke-dashoffset: 251.2;
+  transition: stroke-dashoffset 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Notification toasts */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid var(--color-medical-blue);
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+.toast.show {
+  transform: translateX(0);
+}
+
+.toast.success {
+  border-left-color: var(--color-soft-green);
+}
+
+.toast.error {
+  border-left-color: #ef4444;
+}
+
+.toast.warning {
+  border-left-color: #f59e0b;
+}
+
+/* Enhanced navigation interactions */
+.nav-link {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Form field micro-interactions */
+.form-field {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-field:focus-within {
+  transform: scale(1.02);
+}
+
+.form-field:focus-within .form-label {
+  color: var(--color-medical-blue);
+  transform: translateY(-2px);
+}
+
+/* Image lazy loading effects */
+.image-lazy {
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.image-lazy.loaded {
+  opacity: 1;
+}
+
+.image-lazy.loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+}
+
+/* Scroll indicators */
+.scroll-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--color-medical-light-blue);
+  z-index: 1000;
+}
+
+.scroll-progress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-medical-blue), var(--color-trust-blue));
+  width: 0%;
+  transition: width 0.1s ease-out;
+}
+
+/* Floating action button */
+.fab {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--color-medical-blue);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(59, 123, 184, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(0);
+  z-index: 100;
+}
+
+.fab.show {
+  transform: scale(1);
+}
+
+.fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 30px rgba(59, 123, 184, 0.4);
+}
+
+/* Pulse animation for call-to-action elements */
+@keyframes medical-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.pulse-cta {
+  animation: medical-pulse 2s ease-in-out infinite;
+}
+
+/* Enhanced focus states for accessibility */
+.focus-enhanced:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-medical-blue), 
+              0 0 0 6px rgba(59, 123, 184, 0.2);
+  transform: scale(1.02);
+}
+
+/* Smooth reveal animations */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slide-down {
+  animation: slide-down 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slide-left {
+  animation: slide-left 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slide-right {
+  animation: slide-right 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Intersection Observer animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal.delay-1 {
+  transition-delay: 0.1s;
+}
+
+.reveal.delay-2 {
+  transition-delay: 0.2s;
+}
+
+.reveal.delay-3 {
+  transition-delay: 0.3s;
+}
+
+.reveal.delay-4 {
+  transition-delay: 0.4s;
+}
+
+/* ================================= */
+/* DARK MODE STYLES */
+/* ================================= */
+
+/* Root dark theme class toggles */
+.dark {
+  color-scheme: dark;
+}
+
+/* Dark mode base styles */
+.dark body {
+  background: var(--color-dark-bg-primary);
+  color: var(--color-dark-text-primary);
+}
+
+/* Dark mode text colors - Enhanced contrast */
+.dark .text-warm-gray-900 { color: var(--color-dark-text-primary) !important; }
+.dark .text-warm-gray-800 { color: var(--color-dark-text-primary) !important; }
+.dark .text-warm-gray-700 { color: var(--color-dark-text-secondary) !important; }
+.dark .text-warm-gray-600 { color: var(--color-dark-text-secondary) !important; }
+.dark .text-warm-gray-500 { color: var(--color-dark-text-muted) !important; }
+.dark .text-warm-gray-400 { color: var(--color-dark-text-muted) !important; }
+.dark .text-gray-700 { color: var(--color-dark-text-secondary) !important; }
+.dark .text-gray-600 { color: var(--color-dark-text-secondary) !important; }
+
+/* Dark mode background colors */
+.dark .bg-white { background-color: var(--color-dark-bg-secondary) !important; }
+.dark .bg-warm-gray-50 { background-color: var(--color-dark-bg-secondary) !important; }
+.dark .bg-warm-gray-100 { background-color: var(--color-dark-bg-tertiary) !important; }
+.dark .bg-warm-gray-200 { background-color: var(--color-dark-surface) !important; }
+.dark .bg-medical-light-blue { background-color: rgba(96, 165, 250, 0.1) !important; }
+.dark .bg-gentle-blue { background-color: rgba(96, 165, 250, 0.05) !important; }
+.dark .bg-warm-gray-25 { background-color: var(--color-dark-bg-primary) !important; }
+
+/* Dark mode medical blue colors */
+.dark .text-medical-blue { color: var(--color-dark-medical-blue) !important; }
+.dark .text-trust-blue { color: var(--color-dark-medical-blue-light) !important; }
+.dark .bg-medical-blue { background-color: var(--color-dark-medical-blue) !important; }
+.dark .bg-trust-blue { background-color: var(--color-dark-medical-blue) !important; }
+
+/* Dark mode borders and dividers */
+.dark .border-warm-gray-100 { border-color: var(--color-dark-border) !important; }
+.dark .border-warm-gray-200 { border-color: var(--color-dark-border) !important; }
+.dark .border-warm-gray-300 { border-color: var(--color-dark-border-light) !important; }
+.dark .border-medical-gray { border-color: var(--color-dark-divider) !important; }
+
+/* Dark mode shadows */
+.dark .shadow-card { box-shadow: var(--shadow-dark-card) !important; }
+.dark .shadow-soft { box-shadow: var(--shadow-dark-soft) !important; }
+.dark .shadow-warm { box-shadow: var(--shadow-dark-warm) !important; }
+.dark .shadow-gentle { box-shadow: var(--shadow-dark-gentle) !important; }
+.dark .shadow-floating { box-shadow: var(--shadow-dark-floating) !important; }
+.dark .shadow-hover { box-shadow: var(--shadow-dark-floating) !important; }
+
+/* Dark mode gradients */
+.dark .bg-gradient-to-br { 
+  background: linear-gradient(to bottom right, var(--color-dark-bg-primary), var(--color-dark-bg-secondary), var(--color-dark-bg-tertiary)) !important; 
+}
+.dark .bg-gradient-to-r.from-medical-blue {
+  background: linear-gradient(to right, var(--color-dark-medical-blue), var(--color-dark-medical-blue-light)) !important;
+}
+.dark .bg-gradient-to-r.from-gentle-blue {
+  background: linear-gradient(to right, rgba(96, 165, 250, 0.1), rgba(147, 197, 253, 0.1)) !important;
+}
+
+/* Dark mode form elements */
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: var(--color-dark-bg-tertiary) !important;
+  border-color: var(--color-dark-border) !important;
+  color: var(--color-dark-text-primary) !important;
+}
+
+.dark input:focus,
+.dark select:focus,
+.dark textarea:focus {
+  border-color: var(--color-dark-medical-blue) !important;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2) !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: var(--color-dark-text-muted) !important;
+}
+
+/* Dark mode buttons */
+.dark .bg-medical-blue:hover {
+  background-color: var(--color-dark-medical-blue-light) !important;
+}
+
+.dark .bg-white.text-trust-blue {
+  background-color: var(--color-dark-bg-tertiary) !important;
+  color: var(--color-dark-medical-blue-light) !important;
+  border-color: var(--color-dark-medical-blue) !important;
+}
+
+.dark .bg-white.text-trust-blue:hover {
+  background-color: var(--color-dark-medical-blue) !important;
+  color: white !important;
+}
+
+/* Dark mode navigation - Enhanced visibility */
+.dark .text-gray-700 {
+  color: var(--color-dark-text-secondary) !important;
+}
+
+.dark .text-gray-700:hover {
+  color: var(--color-dark-medical-blue-bright) !important;
+}
+
+.dark .hover\:text-medical-blue:hover {
+  color: var(--color-dark-medical-blue-bright) !important;
+}
+
+.dark .hover\:bg-medical-light-blue:hover {
+  background-color: rgba(96, 165, 250, 0.15) !important;
+}
+
+/* Enhanced link and navigation visibility */
+.dark a {
+  color: var(--color-dark-medical-blue-light);
+}
+
+.dark a:hover {
+  color: var(--color-dark-medical-blue-bright);
+}
+
+/* Ensure navigation links have good contrast */
+.dark nav a {
+  color: var(--color-dark-text-secondary) !important;
+}
+
+.dark nav a:hover {
+  color: var(--color-dark-medical-blue-bright) !important;
+}
+
+/* Dark mode badges and pills - Enhanced contrast */
+.dark .bg-white.bg-opacity-95 {
+  background-color: rgba(30, 41, 59, 0.95) !important;
+  backdrop-filter: blur(8px);
+}
+
+/* Enhanced badge text visibility */
+.dark .badge-contrast {
+  background-color: var(--color-dark-medical-blue) !important;
+  color: var(--color-dark-text-primary) !important;
+  border-color: var(--color-dark-medical-blue) !important;
+}
+
+.dark .badge-light {
+  background-color: var(--color-dark-bg-tertiary) !important;
+  color: var(--color-dark-medical-blue-bright) !important;
+  border-color: var(--color-dark-medical-blue) !important;
+}
+
+/* Enhanced contrast for text on colored backgrounds */
+.dark .bg-medical-light-blue .text-medical-blue,
+.dark .bg-gentle-blue .text-medical-blue {
+  color: var(--color-dark-medical-blue-bright) !important;
+  font-weight: 600;
+}
+
+/* Better contrast for headings and important text */
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  color: var(--color-dark-text-primary) !important;
+}
+
+.dark .text-xl, .dark .text-2xl, .dark .text-3xl, .dark .text-4xl {
+  color: var(--color-dark-text-primary) !important;
+}
+
+/* Better contrast for subtle elements */
+.dark .text-warm-gray-500 {
+  color: var(--color-dark-text-muted) !important;
+}
+
+.dark .text-warm-gray-400 {
+  color: var(--color-dark-text-subtle) !important;
+}
+
+/* Dark mode cards and components */
+.dark .card-hover-enhanced:hover {
+  box-shadow: var(--shadow-dark-floating) !important;
+}
+
+/* Dark mode loading states */
+.dark .page-loading {
+  background: rgba(15, 23, 42, 0.95);
+}
+
+.dark .skeleton {
+  background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+  background-size: 200% 100%;
+}
+
+.dark .toast {
+  background: var(--color-dark-bg-secondary);
+  color: var(--color-dark-text-primary);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.dark .scroll-indicator {
+  background: var(--color-dark-bg-tertiary);
+}
+
+.dark .fab {
+  background: var(--color-dark-medical-blue);
+  box-shadow: 0 8px 20px rgba(96, 165, 250, 0.3);
+}
+
+.dark .fab:hover {
+  box-shadow: 0 12px 30px rgba(96, 165, 250, 0.4);
+}
+
+/* Dark mode focus states */
+.dark *:focus {
+  outline-color: var(--color-dark-medical-blue);
+}
+
+.dark input:focus,
+.dark select:focus,
+.dark textarea:focus,
+.dark button:focus {
+  box-shadow: 0 0 0 3px var(--color-dark-medical-blue), 0 0 0 4px rgba(96, 165, 250, 0.2) !important;
+}
+
+/* Dark mode high contrast support - Enhanced */
+@media (prefers-contrast: high) {
+  .dark {
+    --color-dark-text-primary: #ffffff;
+    --color-dark-text-secondary: #f1f5f9;
+    --color-dark-text-muted: #e2e8f0;
+    --color-dark-medical-blue: #bfdbfe;
+    --color-dark-medical-blue-bright: #ffffff;
+    --color-dark-bg-primary: #000000;
+    --color-dark-bg-secondary: #1a1a1a;
+    --color-dark-bg-tertiary: #2a2a2a;
+    --color-dark-border: #808080;
+    --color-dark-border-light: #999999;
+  }
+}
+
+/* Additional dark mode fixes for better readability */
+.dark .placeholder\:text-warm-gray-400::placeholder {
+  color: var(--color-dark-text-muted) !important;
+}
+
+.dark .placeholder\:text-warm-gray-500::placeholder {
+  color: var(--color-dark-text-muted) !important;
+}
+
+/* Better contrast for form labels and inputs */
+.dark label {
+  color: var(--color-dark-text-secondary) !important;
+}
+
+.dark .form-label {
+  color: var(--color-dark-text-secondary) !important;
+}
+
+/* Enhanced visibility for interactive elements */
+.dark button {
+  color: var(--color-dark-text-primary) !important;
+}
+
+.dark .btn-secondary {
+  color: var(--color-dark-medical-blue-bright) !important;
+  border-color: var(--color-dark-medical-blue-light) !important;
+}
+
+.dark .btn-secondary:hover {
+  background-color: var(--color-dark-medical-blue) !important;
+  color: var(--color-dark-text-primary) !important;
+}
+
+/* Theme transition for smooth switching */
+*,
+*::before,
+*::after {
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Specific elements that should transition smoothly */
+body,
+.bg-white,
+.bg-warm-gray-50,
+.bg-warm-gray-100,
+.text-warm-gray-900,
+.text-warm-gray-800,
+.text-warm-gray-700,
+.text-warm-gray-600,
+.text-medical-blue,
+.border-warm-gray-100,
+.border-warm-gray-200,
+input,
+select,
+textarea,
+button,
+.shadow-card,
+.shadow-soft {
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Preserve motion preferences for all animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* But preserve theme transitions even in reduced motion */
+  body,
+  .bg-white,
+  .bg-warm-gray-50,
+  .text-warm-gray-900,
+  .text-medical-blue {
+    transition-duration: 150ms !important;
+  }
+  
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  .animate-slide-up,
+  .animate-slide-down,
+  .animate-slide-left,
+  .animate-slide-right {
+    animation: none !important;
+  }
+  
+  .card-hover-enhanced:hover {
+    transform: none !important;
+  }
+  
+  .pulse-cta {
+    animation: none !important;
+  }
+  
+  .theme-toggle-slider {
+    transition-duration: 150ms !important;
+  }
+}

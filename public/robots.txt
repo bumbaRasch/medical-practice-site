@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /telescope
+Disallow: /api/
+Disallow: /_debugbar/
+Disallow: /form/
+
+# Medical practice website - allow all search engines
+Allow: /
+
+# Sitemap location
+Sitemap: https://example.com/sitemap.xml
+
+# Crawl delay for respectful indexing
+Crawl-delay: 1

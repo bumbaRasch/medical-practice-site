@@ -2,12 +2,12 @@
 
 ## 🗄️ Database Architecture Overview
 
-**Database Engine:** MySQL 8.0+  
+**Database Engine:** SQLite 3  
 **ORM:** Laravel Eloquent  
 **Migration System:** Laravel Schema Builder  
 **Compliance:** GDPR-ready with soft deletes and audit trails
 
-This medical practice website uses a **normalized database design** with strict referential integrity, comprehensive validation, and healthcare-specific data handling requirements.
+This medical practice website uses a **normalized database design** with strict referential integrity, comprehensive validation, and healthcare-specific data handling requirements. SQLite provides excellent performance for small to medium-scale medical practices while maintaining full ACID compliance.
 
 ---
 
@@ -74,24 +74,24 @@ This medical practice website uses a **normalized database design** with strict 
 
 ```sql
 CREATE TABLE form_requests (
-    id                  BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    full_name          VARCHAR(255) NOT NULL COMMENT 'Patient full name',
-    email              VARCHAR(255) NOT NULL COMMENT 'Contact email address',
-    contact_reason_id   BIGINT UNSIGNED NOT NULL COMMENT 'FK to contact_reasons',
-    phone              VARCHAR(255) NULL COMMENT 'Optional phone number',
-    preferred_datetime  DATETIME NULL COMMENT 'Preferred appointment time',
-    message            TEXT NULL COMMENT 'Additional patient message',
-    created_at         TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at         TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deleted_at         TIMESTAMP NULL COMMENT 'Soft delete for GDPR compliance',
+    id                  INTEGER PRIMARY KEY AUTOINCREMENT,
+    full_name          TEXT NOT NULL, -- 'Patient full name'
+    email              TEXT NOT NULL, -- 'Contact email address'
+    contact_reason_id   INTEGER NOT NULL, -- 'FK to contact_reasons'
+    phone              TEXT NULL, -- 'Optional phone number'
+    preferred_datetime  DATETIME NULL, -- 'Preferred appointment time'
+    message            TEXT NULL, -- 'Additional patient message'
+    created_at         DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at         DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+    deleted_at         DATETIME NULL, -- 'Soft delete for GDPR compliance'
     
-    CONSTRAINT fk_form_requests_contact_reason 
-        FOREIGN KEY (contact_reason_id) REFERENCES contact_reasons(id) ON DELETE RESTRICT,
-        
-    INDEX idx_form_requests_created (created_at),
-    INDEX idx_form_requests_reason (contact_reason_id),
-    INDEX idx_form_requests_deleted (deleted_at)
+    FOREIGN KEY (contact_reason_id) REFERENCES contact_reasons(id) ON DELETE RESTRICT
 );
+
+-- SQLite indexes are created separately
+CREATE INDEX idx_form_requests_created ON form_requests(created_at);
+CREATE INDEX idx_form_requests_reason ON form_requests(contact_reason_id);
+CREATE INDEX idx_form_requests_deleted ON form_requests(deleted_at);
 ```
 
 **Key Features:**
@@ -113,22 +113,20 @@ CREATE TABLE form_requests (
 
 ```sql
 CREATE TABLE contact_reasons (
-    id          BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    key         VARCHAR(255) UNIQUE NOT NULL COMMENT 'Enum key (matches PHP ContactReason enum)',
-    name        JSON NOT NULL COMMENT 'Localized display names {"de": "German", "en": "English"}',
-    sort_order  INTEGER DEFAULT 0 NOT NULL COMMENT 'Display order in forms',
-    is_active   BOOLEAN DEFAULT 1 NOT NULL COMMENT 'Whether available for selection',
-    created_at  TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at  TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    key         TEXT UNIQUE NOT NULL, -- 'Enum key (matches PHP ContactReason enum)'
+    name        TEXT NOT NULL, -- 'Localized display names as JSON {"de": "German", "en": "English"}'
+    sort_order  INTEGER DEFAULT 0 NOT NULL, -- 'Display order in forms'
+    is_active   INTEGER DEFAULT 1 NOT NULL, -- 'Whether available for selection (1=true, 0=false)'
+    created_at  DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at  DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
     
-    CONSTRAINT contact_reasons_key_enum_check 
-        CHECK (key IN ('termin','frage','beschwerde','notfall','rezept','ueberweisung','beratung','sonstiges')),
-    
-    CONSTRAINT contact_reasons_key_unique UNIQUE (key),
-    
-    INDEX idx_contact_reasons_active_sort (is_active, sort_order),
-    INDEX idx_contact_reasons_key (key)
+    CHECK (key IN ('termin','frage','beschwerde','notfall','rezept','ueberweisung','beratung','sonstiges'))
 );
+
+-- SQLite indexes are created separately
+CREATE INDEX idx_contact_reasons_active_sort ON contact_reasons(is_active, sort_order);
+CREATE INDEX idx_contact_reasons_key ON contact_reasons(key);
 ```
 
 **Key Features:**
@@ -407,17 +405,17 @@ WHERE cr.is_active = 1
 
 **JSON Column Optimization:**
 - **Storage Efficiency**: Single column for all languages vs. separate tables
-- **Query Performance**: Direct JSON extraction with MySQL JSON functions
+- **Query Performance**: Direct JSON extraction with SQLite JSON functions
 - **Caching Strategy**: Application-level caching for 24-hour TTL
 - **Fallback Logic**: German → English → Key fallback hierarchy
 
 ```sql
--- JSON extraction for localized names
+-- JSON extraction for localized names (SQLite syntax)
 SELECT 
     id,
     key,
-    JSON_UNQUOTE(JSON_EXTRACT(name, '$.de')) as name_de,
-    JSON_UNQUOTE(JSON_EXTRACT(name, '$.en')) as name_en
+    JSON_EXTRACT(name, '$.de') as name_de,
+    JSON_EXTRACT(name, '$.en') as name_en
 FROM contact_reasons 
 WHERE is_active = 1;
 ```
@@ -430,17 +428,15 @@ WHERE is_active = 1;
 
 #### **Data Integrity Constraints**
 ```sql
--- Enum validation at database level
-CONSTRAINT contact_reasons_key_enum_check 
-    CHECK (key IN ('termin','frage','beschwerde','notfall','rezept','ueberweisung','beratung','sonstiges'))
+-- Enum validation at database level (SQLite syntax)
+CHECK (key IN ('termin','frage','beschwerde','notfall','rezept','ueberweisung','beratung','sonstiges'))
 
--- Referential integrity
-CONSTRAINT fk_form_requests_contact_reason 
-    FOREIGN KEY (contact_reason_id) REFERENCES contact_reasons(id) ON DELETE RESTRICT
+-- Referential integrity (SQLite syntax)
+FOREIGN KEY (contact_reason_id) REFERENCES contact_reasons(id) ON DELETE RESTRICT
 
--- Unique constraints
-CONSTRAINT contact_reasons_key_unique UNIQUE (key)
-CONSTRAINT users_email_unique UNIQUE (email)
+-- Unique constraints (SQLite syntax)
+UNIQUE (key)
+UNIQUE (email)
 ```
 
 #### **Input Validation Layers**

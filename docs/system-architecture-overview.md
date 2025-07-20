@@ -2,7 +2,7 @@
 
 ## 🏗️ Overall Architecture
 
-**Technology Stack:** Laravel 12+ | PHP 8.3+ | Blade Templates | TailwindCSS v4 | Vanilla JavaScript | MySQL
+**Technology Stack:** Laravel 12+ | PHP 8.3+ | Blade Templates | TailwindCSS v4 | Vanilla JavaScript | SQLite
 
 This is a **German medical practice website** built with enterprise-grade architecture, strict type safety (PHPStan Level 9), and comprehensive internationalization. The system prioritizes trust, accessibility, and performance for healthcare professionals.
 

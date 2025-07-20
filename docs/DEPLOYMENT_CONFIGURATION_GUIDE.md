@@ -20,10 +20,10 @@
 ### System Requirements
 
 **Minimum Requirements:**
-- PHP 8.3+ with extensions: mbstring, xml, ctype, json, bcmath, pdo_mysql
+- PHP 8.3+ with extensions: mbstring, xml, ctype, json, bcmath, pdo_sqlite
 - Composer 2.0+
 - Node.js 18+ with npm/yarn
-- MySQL 8.0+ or MariaDB 10.4+
+- SQLite 3.8+ (included with PHP)
 - Redis 6.0+ (for caching)
 
 **Recommended Production:**
@@ -37,10 +37,10 @@
 
 ```bash
 # Ubuntu/Debian
-sudo apt-get install php8.3-cli php8.3-fpm php8.3-mysql php8.3-xml php8.3-mbstring php8.3-curl php8.3-zip php8.3-redis
+sudo apt-get install php8.3-cli php8.3-fpm php8.3-sqlite3 php8.3-xml php8.3-mbstring php8.3-curl php8.3-zip php8.3-redis
 
 # CentOS/RHEL  
-sudo yum install php83-cli php83-fpm php83-mysql php83-xml php83-mbstring php83-curl php83-zip php83-redis
+sudo yum install php83-cli php83-fpm php83-sqlite php83-xml php83-mbstring php83-curl php83-zip php83-redis
 ```
 
 ---
@@ -81,13 +81,13 @@ APP_LOCALE=de
 APP_FALLBACK_LOCALE=en
 APP_FAKER_LOCALE=de_DE
 
-# Database
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=hausarzt_db_bumbara
-DB_USERNAME=laravel_hausarzt_bumbara
-DB_PASSWORD=secret_password_hausartz_bumba
+# Database (SQLite)
+DB_CONNECTION=sqlite
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_DATABASE=laravel
+# DB_USERNAME=root
+# DB_PASSWORD=
 
 # Cache & Session
 CACHE_STORE=redis
@@ -120,13 +120,8 @@ LOG_LEVEL=debug
 ### Database Setup
 
 ```bash
-# Create database
-mysql -u root -p
-CREATE DATABASE hausarzt_db_bumbara CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE USER 'laravel_hausarzt_bumbara'@'localhost' IDENTIFIED BY 'secret_password_hausartz_bumba';
-GRANT ALL PRIVILEGES ON hausarzt_db_bumbara.* TO 'laravel_hausarzt_bumbara'@'localhost';
-FLUSH PRIVILEGES;
-EXIT;
+# SQLite database is automatically created during migrations
+# No database server setup required
 
 # Run migrations and seeds
 php artisan migrate:fresh --seed
@@ -165,13 +160,13 @@ SECURE_COOKIES=true
 HTTPS_ONLY=true
 TRUSTED_PROXIES=*
 
-# Database - Production Credentials
-DB_CONNECTION=mysql
-DB_HOST=production-db-host
-DB_PORT=3306
-DB_DATABASE=hausarzt_production
-DB_USERNAME=hausarzt_prod_user
-DB_PASSWORD=secure-production-password
+# Database - Production (SQLite)
+DB_CONNECTION=sqlite
+# DB_HOST=production-db-host
+# DB_PORT=3306
+# DB_DATABASE=hausarzt_production
+# DB_USERNAME=hausarzt_prod_user
+# DB_PASSWORD=secure-production-password
 
 # Cache & Performance
 CACHE_STORE=redis
@@ -422,21 +417,8 @@ services:
       - hausarzt-network
     depends_on:
       - app
-
-  db:
-    image: mysql:8.0
-    container_name: hausarzt-db
-    restart: unless-stopped
-    environment:
-      MYSQL_DATABASE: hausarzt_production
-      MYSQL_USER: hausarzt_prod_user
-      MYSQL_PASSWORD: secure-production-password
-      MYSQL_ROOT_PASSWORD: root-production-password
     volumes:
-      - db_data:/var/lib/mysql
-      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
-    networks:
-      - hausarzt-network
+      - ./database/database.sqlite:/var/www/html/database/database.sqlite
 
   redis:
     image: redis:7-alpine
@@ -449,7 +431,6 @@ services:
       - hausarzt-network
 
 volumes:
-  db_data:
   redis_data:
 
 networks:
@@ -468,7 +449,7 @@ RUN apk add --no-cache \
     nginx \
     nodejs \
     npm \
-    mysql-client \
+    sqlite \
     redis \
     zip \
     unzip \
@@ -477,7 +458,7 @@ RUN apk add --no-cache \
 
 # Install PHP extensions
 RUN docker-php-ext-install \
-    pdo_mysql \
+    pdo_sqlite \
     bcmath \
     opcache
 
@@ -589,26 +570,15 @@ php artisan tinker
 
 ### Production Database Configuration
 
-```sql
--- MySQL configuration for production
-[mysqld]
-innodb_buffer_pool_size = 2G
-innodb_log_file_size = 512M
-innodb_flush_log_at_trx_commit = 2
-innodb_flush_method = O_DIRECT
+```ini
+# SQLite configuration via PRAGMA statements (Laravel application)
+# No separate database server configuration required
 
-# Character set
-character-set-server = utf8mb4
-collation-server = utf8mb4_unicode_ci
-
-# Performance
-query_cache_type = 1
-query_cache_size = 256M
-tmp_table_size = 256M
-max_heap_table_size = 256M
-
-# Connections
-max_connections = 200
+# SQLite PRAGMA settings can be configured in database connection:
+# PRAGMA journal_mode = WAL;      # Write-Ahead Logging for better performance
+# PRAGMA synchronous = NORMAL;    # Good balance of safety and speed
+# PRAGMA cache_size = 10000;      # Increase cache size for better performance
+# PRAGMA foreign_keys = ON;       # Enable foreign key constraints
 ```
 
 ### Database Backup Strategy
@@ -625,22 +595,16 @@ DB_USER="hausarzt_prod_user"
 # Create backup directory
 mkdir -p $BACKUP_DIR
 
-# Database backup
-mysqldump \
-    --user=$DB_USER \
-    --password \
-    --single-transaction \
-    --routines \
-    --triggers \
-    $DB_NAME > $BACKUP_DIR/hausarzt_db_$DATE.sql
+# Database backup (SQLite)
+cp /var/www/html/database/database.sqlite $BACKUP_DIR/hausarzt_db_$DATE.sqlite
 
 # Compress backup
-gzip $BACKUP_DIR/hausarzt_db_$DATE.sql
+gzip $BACKUP_DIR/hausarzt_db_$DATE.sqlite
 
 # Remove backups older than 30 days
-find $BACKUP_DIR -name "hausarzt_db_*.sql.gz" -mtime +30 -delete
+find $BACKUP_DIR -name "hausarzt_db_*.sqlite.gz" -mtime +30 -delete
 
-echo "Backup completed: hausarzt_db_$DATE.sql.gz"
+echo "Backup completed: hausarzt_db_$DATE.sqlite.gz"
 ```
 
 ### Migration Commands
@@ -837,8 +801,8 @@ mkdir -p "$BACKUP_BASE/config"
 
 # Database backup
 echo "📊 Backing up database..."
-mysqldump --user=hausarzt_prod_user --password --single-transaction hausarzt_production \
-    | gzip > "$BACKUP_BASE/database/db_$BACKUP_DATE.sql.gz"
+cp "$APP_PATH/database/database.sqlite" "$BACKUP_BASE/database/db_$BACKUP_DATE.sqlite"
+gzip "$BACKUP_BASE/database/db_$BACKUP_DATE.sqlite"
 
 # File backup (excluding cache and logs)
 echo "📁 Backing up application files..."
@@ -865,9 +829,9 @@ echo "✅ Backup completed: $BACKUP_DATE"
 ### Recovery Procedures
 
 ```bash
-# Database recovery
-gunzip -c /var/backups/hausarzt/database/db_20241220_120000.sql.gz | \
-    mysql -u hausarzt_prod_user -p hausarzt_production
+# Database recovery (SQLite)
+gunzip -c /var/backups/hausarzt/database/db_20241220_120000.sqlite.gz > \
+    /var/www/hausarzt-praxis.de/database/database.sqlite
 
 # Application recovery
 cd /var/www

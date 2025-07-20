@@ -60,16 +60,15 @@ php artisan route:clear
 php artisan view:clear
 ```
 
-### Docker Commands
+### Database Commands
 ```bash
-# Start Docker containers
-docker-compose up -d
+# SQLite database operations
+php artisan migrate           # Run migrations
+php artisan migrate:fresh     # Fresh migrations (resets data)
+php artisan db:seed           # Seed database with sample data
 
-# Stop containers
-docker-compose down
-
-# Access MySQL CLI
-docker exec -it hausarzt-db mysql -u laravel_hausarzt_bumbara -p
+# Direct SQLite CLI access
+sqlite3 database/database.sqlite
 ```
 
 ### Performance & Caching Commands
@@ -488,12 +487,13 @@ return [
 
 ### Environment Variables
 ```ini
-# Database
-DB_CONNECTION=mysql
-DB_HOST=db
-DB_DATABASE=hausarzt_db_bumbara
-DB_USERNAME=laravel_hausarzt_bumbara
-DB_PASSWORD=secret_password_hausartz_bumba
+# Database (SQLite)
+DB_CONNECTION=sqlite
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_DATABASE=laravel
+# DB_USERNAME=root
+# DB_PASSWORD=
 
 # Localization
 APP_LOCALE=de

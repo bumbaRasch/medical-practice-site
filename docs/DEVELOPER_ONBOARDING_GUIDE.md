@@ -37,7 +37,7 @@ You're joining the development team for a **modern German medical practice websi
 ```
 🔧 Backend:    Laravel 12+ with PHP 8.3+
 🎨 Frontend:   Blade templates + TailwindCSS v4
-🗄️ Database:   MySQL with proper relationships and constraints
+🗄️ Database:   SQLite with proper relationships and constraints
 📧 Email:      Laravel Mailable with locale awareness
 🚀 Caching:    Redis with multi-layer response caching
 🔒 Security:   Security headers, structured logging, GDPR compliance
@@ -62,10 +62,10 @@ Before you begin, ensure you have:
 
 ```bash
 # Required software
-- PHP 8.3+ with extensions (mbstring, xml, ctype, json, bcmath, pdo_mysql)
+- PHP 8.3+ with extensions (mbstring, xml, ctype, json, bcmath, pdo_sqlite)
 - Composer 2.0+
 - Node.js 18+ with npm
-- MySQL 8.0+ or MariaDB 10.4+
+- SQLite 3.8+ (included with PHP)
 - Redis 6.0+ (for caching)
 - Git
 
@@ -97,10 +97,11 @@ php artisan key:generate
 
 Edit `.env` file with your local settings:
 ```ini
-# Database (create database first)
-DB_DATABASE=hausarzt_db_bumbara
-DB_USERNAME=your_mysql_username
-DB_PASSWORD=your_mysql_password
+# Database (SQLite - automatically created)
+DB_CONNECTION=sqlite
+# DB_DATABASE=hausarzt_db_bumbara
+# DB_USERNAME=your_mysql_username
+# DB_PASSWORD=your_mysql_password
 
 # Mail (use Mailpit for local development)
 MAIL_HOST=localhost
@@ -114,10 +115,8 @@ SESSION_DRIVER=redis
 
 **3. Database Setup**
 ```bash
-# Create database in MySQL
-mysql -u root -p
-CREATE DATABASE hausarzt_db_bumbara CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-EXIT;
+# SQLite database is automatically created during migrations
+# No database server setup required
 
 # Run migrations and seed test data
 php artisan migrate:fresh --seed

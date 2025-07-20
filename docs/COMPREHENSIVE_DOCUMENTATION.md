@@ -318,11 +318,11 @@ enum ContactReason: string
 
 **Database Settings:**
 ```ini
-DB_CONNECTION=mysql
-DB_HOST=db
-DB_DATABASE=hausarzt_db_bumbara
-DB_USERNAME=laravel_hausarzt_bumbara
-DB_PASSWORD=secret_password_hausartz_bumba
+DB_CONNECTION=sqlite
+# DB_HOST=127.0.0.1
+# DB_DATABASE=laravel
+# DB_USERNAME=root
+# DB_PASSWORD=
 ```
 
 **Localization Settings:**
@@ -691,21 +691,8 @@ services:
       - "8000:8000"
     environment:
       - APP_ENV=production
-      - DB_HOST=db
-    depends_on:
-      - db
-      
-  db:
-    image: mysql:8.0
-    environment:
-      MYSQL_DATABASE: hausarzt_db_bumbara
-      MYSQL_USER: laravel_hausarzt_bumbara
-      MYSQL_PASSWORD: secret_password_hausartz_bumba
     volumes:
-      - mysql_data:/var/lib/mysql
-
-volumes:
-  mysql_data:
+      - ./database/database.sqlite:/app/database/database.sqlite
 ```
 
 ### Performance Monitoring

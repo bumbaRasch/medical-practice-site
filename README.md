@@ -59,37 +59,19 @@
 | **⚡ Performance** | Response caching + content caching | Sub-3s page loads |
 | **♿ Accessibility** | WCAG 2.1 AA compliant | Inclusive healthcare access |
 
-## 🚀 **Demo & Screenshots**
+## 🚀 **Key Pages & Features**
 
-### **🖼️ Visual Preview**
+### **🏠 Homepage**
+Clean, professional design that builds patient trust from first impression with hero section, practice benefits, and opening hours.
 
-#### **📱 Homepage - Desktop & Mobile**
-> Clean, professional design that builds patient trust from first impression
+### **📋 FAQ System - Patient Self-Service**
+Comprehensive Q&A system reduces administrative calls by 60% with categorized questions covering practice information, appointments, services, and first visits.
 
-| Desktop View | Mobile View |
-|--------------|-------------|
-| ![Homepage Desktop](docs/screenshots/homepage-desktop.png) | ![Homepage Mobile](docs/screenshots/homepage-mobile.png) |
+### **👥 Team Profiles - Multilingual Support**  
+Professional staff presentation with German/English localization, including photos, roles, and qualifications.
 
-#### **📋 FAQ System - Patient Self-Service**
-> Comprehensive Q&A system reduces administrative calls by 60%
-
-![FAQ System](docs/screenshots/faq-system.png)
-
-#### **👥 Team Profiles - Multilingual Support**  
-> Professional staff presentation with German/English localization
-
-![Team Profiles](docs/screenshots/team-profiles.png)
-
-#### **📞 Contact Form - Professional Appointment Booking**
-> GDPR-compliant form with email notifications and validation
-
-![Contact Form](docs/screenshots/contact-form.png)
-
-### **🌐 Live Demo**
-**[→ View Live Demo](https://demo-medical-practice.example.com)**
-- Username: `demo@example.com`
-- Password: `demo123`
-- *Full functionality including form submissions and email notifications*
+### **📞 Contact Form - Professional Appointment Booking**
+GDPR-compliant form with email notifications, validation, and multiple contact reasons for appointment requests.
 
 ---
 
@@ -367,53 +349,10 @@ RESPONSE_CACHE_ENABLED=true
 
 ---
 
-## 🤝 **Ready to Purchase or License?**
-
-### **💰 Investment Options**
-
-#### **🏢 Enterprise License** - €15,000
-- **Complete source code** with full commercial rights
-- **Unlimited projects** and client deployments  
-- **White-label licensing** for agency use
-- **1 year of technical support** and updates
-- **Custom branding** and domain expertise consultation
-
-#### **🎯 Single-Use License** - €5,000
-- **Full source code** for one medical practice
-- **Production deployment** assistance included
-- **3 months technical support** 
-- **Basic customization** guidance
-
-#### **📚 Developer License** - €2,500
-- **Learning and portfolio** use
-- **Source code access** with educational documentation
-- **Community support** access
-- **Personal project** usage rights
-
-### **🚀 What You Get Immediately**
-- ✅ **Production-ready codebase** (no additional development needed)
-- ✅ **Comprehensive documentation** (CLAUDE.md + technical guides)
-- ✅ **Sample data and images** (ready for customization)
-- ✅ **Deployment scripts** (one-command setup)
-- ✅ **Email templates** (professional patient communication)
-- ✅ **SEO optimization** (structured data and meta tags)
-
-### **📞 Contact for Purchase**
-- **Email**: [your-email@domain.com]
-- **Demo**: [Live demonstration available]
-- **Technical Discussion**: [Schedule consultation call]
-- **Portfolio**: [Additional healthcare projects available]
-
-### **🔒 Secure Transaction**
-- **Escrow services** available for international buyers
-- **Source code delivery** via private Git repository
-- **License agreement** with clear usage rights
-- **Support terms** clearly defined
-
 ---
 
 **💡 Built by healthcare technology specialists** with deep understanding of German medical practice requirements and modern web development standards.
 
 **🎯 Perfect for:** Medical practices, healthcare agencies, Laravel developers, healthcare technology companies
 
-**✨ Ready to transform medical practice websites?** Let's discuss your specific needs and deployment timeline.
+**✨ A comprehensive prototype showcasing modern Laravel development for the healthcare industry.**
